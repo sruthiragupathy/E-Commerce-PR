@@ -1,0 +1,74 @@
+/* .auth-wrapper {
+  background: url("https://images.pexels.com/photos/972995/pexels-photo-972995.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  opacity: 0.9;
+  max-width: 100%;
+} */
+
+.login-container {
+  width: 100%;
+  max-width: 25rem;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 88vh;
+  background: #fff;
+}
+
+.login-title {
+  margin-bottom: 2rem;
+}
+
+.login-container .btn {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.input-group {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.input-group .input-area {
+  box-sizing: border-box;
+
+  padding: 0.75rem 0.5rem;
+  width: 100%;
+  z-index: 3;
+}
+
+.login-btn__container {
+  width: 100%;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.danger-alert {
+  background: #fff;
+}
+
+.alert div {
+  margin-right: 0.5rem;
+}
+
+.alert span {
+  font-weight: 1000;
+}
+
+.red-txt {
+  color: var(--darkred);
+  font-weight: 1000;
+}
+
+@media screen and (min-width: 900px) {
+  .login-container {
+    height: 80vh;
+  }
+}

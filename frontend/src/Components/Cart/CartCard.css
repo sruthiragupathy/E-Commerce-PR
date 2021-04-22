@@ -1,0 +1,46 @@
+.badge {
+  margin-right: 0.5rem;
+  border: 0;
+}
+
+.badge:hover {
+  background: var(--darkpurple1);
+}
+
+.remove:hover {
+  background: var(--light-grey1);
+}
+
+.move-to-wishlist:hover {
+  background: var(--lightpurple2);
+}
+
+.mb {
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+.description {
+  width: 100%;
+}
+.details__btns {
+  width: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.details__btns button {
+  padding: 0.15rem 0.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--purple);
+}
+
+/* .details__btns .btn-primary {
+  background: transparent;
+} */
+
+@media only screen and (min-width: 750px) {
+  .details__primary {
+    margin-bottom: 2rem;
+  }
+}

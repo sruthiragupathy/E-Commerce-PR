@@ -1,0 +1,45 @@
+.form-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--lightgrey2);
+  padding: 0 1rem 3rem 1rem;
+}
+
+.form-container .btn {
+  width: 100%;
+  float: right;
+}
+
+.address-card {
+  display: flex;
+  border: 1px solid var(--lightgrey2);
+  padding: 1rem;
+  color: var(--midgrey);
+  margin-bottom: 0.5rem;
+}
+
+.address-details {
+  margin-left: 1rem;
+  height: 9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+.new-address-btn {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.btn-outline-secondary,
+.remove-btn {
+  padding: 0.25rem;
+  margin-right: 1rem;
+}
+@media only screen and (min-width: 750px) {
+  .address-container {
+    grid-template-columns: 1fr 0.5fr;
+    margin: 2rem 7rem 0 5rem;
+  }
+}

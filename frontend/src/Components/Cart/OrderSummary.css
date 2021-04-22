@@ -1,0 +1,26 @@
+.order-summary__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid var(--purple);
+  height: 16.45rem;
+  padding: 1rem;
+  color: var(--midgrey);
+}
+
+.bold-txt {
+  font-weight: 1000;
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--light-grey1);
+  padding-bottom: 2rem;
+}
+
+.green-txt {
+  color: var(--darkgreen);
+}
+
+.width-100 {
+  width: 100%;
+}
