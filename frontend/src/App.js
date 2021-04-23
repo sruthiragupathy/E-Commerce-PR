@@ -85,7 +85,7 @@ function App() {
     document.body.style.overflow="scroll"
   }
   return (
-    <div className ="App" style = {{display:"flex",flexDirection:"column"}}>
+    <div className ="App">
       
       <Navbar
       openHamburger={openHamburger}
