@@ -24,6 +24,16 @@ exports.getProducts = async (req,res) => {
     }
 }
 
+exports.getProductById = async(req, res) => {
+    const {product} = req;
+    try {
+        res.json({response: product, success: true})
+    }
+    catch(error) {
+        res.json({ succes:false, error })
+    }
+}
+
 exports.deleteProducts = async (req, res) => {    
     const { productId } = req.params;
     try{
