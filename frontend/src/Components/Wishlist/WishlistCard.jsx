@@ -17,7 +17,8 @@ export const WishlistCard = ({product}) => {
                 dispatch({type:"TOGGLE_TOAST",payload:"", value: false});
               }, 1000)
         }
-            const removeFromWishlist = async () => {
+            const removeFromWishlist = async (e) => {
+                e.preventDefault();
                 dispatch({type:"TOGGLE_TOAST",payload:"removing from wishlist...", value: true});
                 const {data : {response, success}} = await axios.delete(`${BACKEND}/${auth.user._id}/wishlist/${_id}`);
                 if(success) {
@@ -28,7 +29,8 @@ export const WishlistCard = ({product}) => {
         }
 
         
-            const productAddToCartHandler = async () => {
+            const productAddToCartHandler = async (e) => {
+                e.preventDefault()
                 dispatch({type:"TOGGLE_TOAST",payload:"adding to cart...", value: true});
                 const {response} = await RestApiCalls("POST", `${BACKEND}/${auth.user._id}/cart/${_id}`)
                 dispatch({type: "SET_CART", payload: response.cartItems});

@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import { useProduct } from "../../Context/ProductContext"
 import { Toast } from "../Toast/Toast";
 import { WishlistCard } from "./WishlistCard";
 import "./WishlistListing.css";
+
 
 export const WishlistListing = () => {
     const {state} = useProduct();
@@ -13,13 +15,18 @@ export const WishlistListing = () => {
                 <div className = "wishlist-heading"><strong>My Wishlist</strong> - {state.wishlist.length} items</div>
                 <div className = "wishlist-wrapper">
                 {
-                    state.wishlist.map(({_id, product, inWishlisted}) => <WishlistCard product = {product} inWishlisted = {inWishlisted} key = {_id}/>)
+                    state.wishlist.map(({_id, product, inWishlisted}) => {
+                        return <Link to = {`/product/${product._id}`}>
+                        <WishlistCard product = {product} inWishlisted = {inWishlisted} key = {_id}/>
+                        </Link>
+                    })
                 }
                 </div>
-                </div>}
+                </div>
+                }
                 {state.toast.message && <Toast message = {state.toast.message}/>}
 
         </div>
 
     )
-}
+            }

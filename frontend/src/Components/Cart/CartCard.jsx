@@ -20,7 +20,8 @@ export const CartCard = ({_id, product, quantity, isInCart}) => {
     }
     const [qty, setQty ] = useState( quantity );
 
-    const addToWishlist = async () => {
+    const addToWishlist = async (e) => {
+        e.preventDefault();
         dispatch({type:"TOGGLE_TOAST",payload:"adding to wishlist...", value: true});
         const {data : {response, success}} = await axios.delete(`${BACKEND}/${auth.user._id}/cart/${product._id}`);
         if(success) {
@@ -36,7 +37,8 @@ export const CartCard = ({_id, product, quantity, isInCart}) => {
 
     }
     
-    const quantityHandler = async ( type ) => {
+    const quantityHandler = async ( type, e ) => {
+        e.preventDefault()
         if(type === "+") {
             setQty(qty => qty + 1);
             const {response} = await RestApiCalls("PUT", `${BACKEND}/${auth.user._id}/cart/${_id}`, {quantity: qty+1})
@@ -51,6 +53,12 @@ export const CartCard = ({_id, product, quantity, isInCart}) => {
             dispatch({type: "SET_CART", payload: response.cartItems})
             }
         }
+    }
+
+    const removeHandler = (e) => {
+        e.preventDefault();
+        dispatch({type:"SET_OVERLAY"})
+        dispatch({type:"SET_MODALID", payload: _id})
     }
 
     return (    <>
@@ -68,10 +76,10 @@ export const CartCard = ({_id, product, quantity, isInCart}) => {
                                     </div>
                                     <div className = "details__btns">
                                         {qty-1 === 0 ? 
-                                        <button className="btn btn-primary disabled">-</button> : 
-                                        <button className = "btn btn-primary" onClick = {() => quantityHandler("-")}>-</button> }
+                                        <button className="btn btn-primary disabled" disabled>-</button> : 
+                                        <button className = "btn btn-primary" onClick = {(e) => quantityHandler("-", e)}>-</button> }
                                         <span>{ qty }</span>
-                                        <button className = "btn btn-primary" onClick = {() => quantityHandler("+")}>+</button>
+                                        <button className = "btn btn-primary" onClick = {(e) => quantityHandler("+", e)}>+</button>
                                     </div>
                                 </div>
                                 <div className="cart-item__price">
@@ -83,21 +91,15 @@ export const CartCard = ({_id, product, quantity, isInCart}) => {
                         </div>
                         <div className="horizontal-card__btns">
                             <div className = "remove-container">
-                                <button className = "remove" onClick = {() => {
-                                    dispatch({type:"SET_OVERLAY"})
-                                    dispatch({type:"SET_MODALID", payload: _id})
-                                }}>REMOVE</button>
+                                <button className = "remove" onClick = {removeHandler}>REMOVE</button>
                             </div>
                             <div>
                                 {
                                     <button className = "move-to-wishlist" onClick = {addToWishlist}>MOVE TO WISHLIST</button>
                                 }
-                                
-        
                             </div>
                         </div>
                     </div>
-                    {state.overlay && state.modalId === _id && <Modal product = {product} />}
 
                 </>
     )

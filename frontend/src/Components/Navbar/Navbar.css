@@ -6,7 +6,7 @@
   right: 0;
   left: 0;
   box-shadow: 0 7px 6px -6px var(--light-grey1);
-  z-index: 7;
+  z-index: 5;
   margin-bottom: 1rem;
 }
 
@@ -30,7 +30,11 @@
 }
 
 .navbar__list {
-  margin-right: 1.5rem;
+  margin-right: 1rem;
+}
+
+.cart-wishlist {
+  display: none;
 }
 
 .navbar__list:nth-child(3) {
@@ -97,16 +101,6 @@
   font-size: 1.5rem;
 }
 
-@media only screen and (min-width: 750px) {
-  .hamburger-menu {
-    display: none;
-  }
-
-  .nav__category {
-    display: flex;
-  }
-}
-
 .notification-badge {
   right: -10%;
 }
@@ -119,7 +113,7 @@
   position: fixed;
   top: 4rem;
   background: #fff;
-  right: 9rem;
+  right: 1.5rem;
   width: 10rem;
   padding: 0.25rem;
 }
@@ -132,4 +126,26 @@
 
 .profile-card button {
   width: 100%;
+}
+
+@media only screen and (min-width: 750px) {
+  .hamburger-menu {
+    display: none;
+  }
+
+  .nav__category {
+    display: flex;
+  }
+  .mobile-view {
+    display: none;
+  }
+  .cart-wishlist {
+    display: block;
+  }
+  .profile-card {
+    right: 9rem;
+  }
+  .navbar__list {
+    margin-right: 1.5rem;
+  }
 }

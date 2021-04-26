@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useProduct } from "../../Context/ProductContext";
 import { Toast } from "../Toast/Toast";
 import { FilterSideBar } from "./FilterSideBar";
@@ -6,8 +7,10 @@ import { ProductCard } from "./ProductCard";
 import "./ProductListingPage.css";
 import {sortFunction} from "./SortFunction";
 
+
 export const ProductListingPage = ({props,productCategory}) => {
     const {state} = useProduct();
+    // console.log({state});
 
     const transformProducts = (products) => {
         let products_to_filter = products;
@@ -42,9 +45,11 @@ export const ProductListingPage = ({props,productCategory}) => {
         <FilterSideBar/>
         <div className = "product-flex">
             {transformProducts(state.products).length !== 0 ? 
-            transformProducts(state.products).map(product => 
-                <ProductCard product = {product} key = {product.id}/>
-            ) : 
+            transformProducts(state.products).map(product => {
+                return <Link to = {`/product/${product._id}`}>
+                    <ProductCard product = {product} key = {product._id} onClick = {() => console.log("hi")}/>
+                </Link>
+            }) : 
             <div className = "empty-product__PLP">"No products to display"</div>}
         </div>
         {state.toast.message && <Toast message = {state.toast.message}/>}

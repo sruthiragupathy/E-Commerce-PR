@@ -38,7 +38,7 @@ export const AddressCard = ({address, addressState, setAddressState, setOpenForm
             <div>Cash on Delivery available</div>
             <div>
                 <button className = "btn btn-outline-danger  remove-btn" onClick  = {removeAddressHandler} >REMOVE</button>
-                <button className = "btn btn-outline-secondary" onClick = {editAddressHandler} >EDIT</button>
+                <button className = "btn btn-outline-secondary edit-btn" onClick = {editAddressHandler} >EDIT</button>
             </div>
 
             

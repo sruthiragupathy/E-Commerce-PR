@@ -18,6 +18,11 @@
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+.toast-login {
+  text-decoration: underline;
+  font-weight: 1000;
+}
+
 @-webkit-keyframes fadein {
   from {
     bottom: -2.5px;

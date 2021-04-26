@@ -13,7 +13,6 @@ export const SignUp = () => {
     const signUpHandler = () => {
         authDispatch({type:"SIGNUP_HANDLER"});
         authDispatch({type:"SET_ISLOGGEDIN"});
-        console.log(auth);
         
     }
     if(auth.isLoggedIn){

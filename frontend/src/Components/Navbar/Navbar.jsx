@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 
-const category = ["home","men", "women", "sneakers"];
+const category = ["amaara","men", "women", "sneakers"];
 
 const Navbar = ({ openHamburger, setOpenHamburger}) => {
 
@@ -31,13 +31,13 @@ const Navbar = ({ openHamburger, setOpenHamburger}) => {
         }`}
       >
         {category.map((item, index) => {
-          return item === "home" ? 
+          return item === "amaara" ? 
           <NavLink 
           to = "/" 
           key = {index} >
             <button className = "sidebar__item" activeClassName="mobile__current-category"
             onClick = {toggleHamburgerMenu}>
-              {item}
+              HOME
             </button>
           </NavLink>:
           <NavLink to = {`/products/${item}`} key = {index} >
@@ -48,11 +48,20 @@ const Navbar = ({ openHamburger, setOpenHamburger}) => {
           </NavLink>
           
         })}
+       
       </ul>
+      <NavLink 
+          to = "/"  className = "mobile-view"
+          >
+            <button className = "sidebar__item amaara mobile-view" 
+            >
+              amaara
+            </button>
+          </NavLink>
       <ul className="nav__category rm-ul-padding flex">
         {category.map((item, index) => {
-          return item === "home" ? 
-          <NavLink to = "/" end key = {index} className = "sidebar__item" activeClassName = "current-category">{item}</NavLink>:
+          return item === "amaara" ? 
+          <NavLink to = "/" end key = {index} className = "sidebar__item amaara">{item}</NavLink>:
           <NavLink to = {`/products/${item}`} key = {index} className = "sidebar__item" activeClassName = "current-category">{item}</NavLink>
           
         })}

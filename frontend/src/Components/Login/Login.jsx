@@ -59,7 +59,6 @@ export const Login = () => {
         setLoading(true);
         if(validateForm()){
             const response = await LoginUserWithCredentials(user,location.state?.from?location.state.from:"/");
-            console.log({response})
             if(response?.success) {
                 dispatch({type:"TOGGLE_TOAST",payload:"You have been logged in successfully, Happy Shopping", value: true});
                 hideToast()

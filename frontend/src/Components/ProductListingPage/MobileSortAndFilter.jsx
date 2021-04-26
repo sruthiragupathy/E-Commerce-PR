@@ -71,6 +71,7 @@ export const MobileSortAndFilter = () => {
                                 onClick = {() => (dispatch({type:"CLEAR_ALL_FILTERS"}))}>CLEAR ALL</button>
                         </div>
                         <div className = "individual-filter">
+                            <label>
                             <input
                             type="checkbox"
                             name="in_stock_only"
@@ -78,7 +79,7 @@ export const MobileSortAndFilter = () => {
                             checked = {state.otherFilter.in_stock}
                             onChange = {() => (dispatch({type : "OTHER_FILTER", payload:"in_stock"}))}
                             />
-                            <label htmlFor="in_stock_only">In Stock Only</label>
+                            In Stock Only</label>
                         </div>
                         <div className = "individual-filter">
                             <label htmlFor="price">Price Range : 0 to {state.otherFilter.ranger_value}</label>
@@ -99,6 +100,7 @@ export const MobileSortAndFilter = () => {
                      {
                     getBrands(state.products).map((item,index) => {
                         return <div key ={index} className = "individual-filter">
+                        <label>
                         <input
                         type="checkbox"
                         name={item}
@@ -110,7 +112,8 @@ export const MobileSortAndFilter = () => {
                             
                         }}
                         />
-                        <label htmlFor={item}>{item}</label>
+                        {item}
+                        </label>
                     </div>
                     })
                     }

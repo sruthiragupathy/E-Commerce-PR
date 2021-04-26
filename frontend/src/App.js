@@ -1,7 +1,7 @@
 import './App.css';
 import React,{useEffect, useState} from "react";
 import Navbar from "./Components/Navbar/Navbar"
-import { useProduct } from './Context/ProductContext';
+import { ProductProvider, useProduct } from './Context/ProductContext';
 import { ProductListingPage } from './Components/ProductListingPage/ProductListingPage';
 import {
  Routes,
@@ -18,6 +18,7 @@ import { useAuth } from './Context/AuthContext';
 import { BACKEND } from './api';
 import { Address } from './Components/Address/Address';
 import { RestApiCalls } from './utils/CallRestApi';
+import { ProductDescription } from './Components/ProductDescription/ProductDescription';
 
 function App() {
   const [openHamburger, setOpenHamburger] = useState(false);
@@ -27,7 +28,7 @@ function App() {
     error:false
   })
   const {auth} = useAuth();
-  console.log({state});
+  // console.log({state});
   useEffect(() => {
     // setStatus({...status,loading:true})
     //fetching products
@@ -59,7 +60,9 @@ function App() {
   }, []);
 
   useEffect (() => {
+    // console.log({auth});
     auth.user._id && (async function() {
+      // console.log("in auth")
       const { response } = await RestApiCalls("GET",`${BACKEND}/${auth.user._id}/cart`) ;
       if(response.success) {
         dispatch ({type: "SET_CART", payload: response.response.cartItems })
@@ -71,7 +74,6 @@ function App() {
       }
     })() && (async function() {
       const { response } = await RestApiCalls("GET",`${BACKEND}/${auth.user._id}/address`) ;
-      console.log(response);
       if(response.success) {
         dispatch ({type: "SET_ADDRESS", payload: response.response.addresses })
       }
@@ -101,6 +103,7 @@ function App() {
         <Route path = "/products/men" element = {<ProductListingPage/>}/>
         <Route path = "/products/sneakers" element = {<ProductListingPage/>}/>
         <Route path = "/"  element = {<Home/>}/>
+        <Route path = "/product/:productId" element = {<ProductDescription />} />
         <PrivateRoutes path = "/checkout/cart" element = {<CartListing/>}/>
         <PrivateRoutes path = "/checkout/address" element = {<Address/>}/>
         <PrivateRoutes path = "/wishlist" element = {<WishlistListing/>}/>

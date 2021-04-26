@@ -15,21 +15,36 @@ export const ProductCard = ({product}) => {
     const {auth} = useAuth();
 
 
-    const hideToast = () => {
+    const hideToast = (seconds = 1000) => {
         setTimeout(() => {
             dispatch({type: "TOGGLE_TOAST", payload: "", value: false});
-          }, 1000)
+          }, seconds)
     }
 
-    const productAddToCartHandler = async () => {
+    
+
+    const productAddToCartHandler = async (e) => {
+        e.preventDefault();
+        if(!auth.isLoggedIn) {
+            dispatch({type:"TOGGLE_TOAST",payload:"Login Toast"});
+            hideToast(3000);
+        }
+        else {
         dispatch({type:"TOGGLE_TOAST",payload:"adding to cart..."});
         const {response} = await RestApiCalls("POST", `${BACKEND}/${auth.user._id}/cart/${_id}`)
         dispatch({type: "SET_CART", payload: response.cartItems});
         dispatch({type:"TOGGLE_TOAST",payload:"1 item added to cart"});
         hideToast()
+        }
     }
 
-    const productAddToWishlistHandler = async () => {
+    const productAddToWishlistHandler = async (e) => {
+        e.preventDefault();
+        if(!auth.isLoggedIn) {
+            dispatch({type:"TOGGLE_TOAST",payload:"Login Toast"});
+            hideToast(3000);
+        }
+        else {
         if(isInWishlist(state.wishlist,_id)){
         dispatch({type:"TOGGLE_TOAST",payload:"removing from wishlist...", value: true});
         // const {response} = await RestApiCalls("DELETE", `${BACKEND}/${auth.user._id}/wishlist/${_id}`)
@@ -48,6 +63,7 @@ export const ProductCard = ({product}) => {
         hideToast()
         }
         }
+    }
     
 
     return (

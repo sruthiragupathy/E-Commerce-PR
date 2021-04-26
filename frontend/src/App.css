@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
 .App {
   box-sizing: border-box;
   display: flex;
@@ -35,4 +37,12 @@
   align-items: center;
   color: var(--purple);
   z-index: 10;
+}
+
+.amaara {
+  font-weight: 1000;
+  color: var(--purple);
+  font-family: "Pacifico", cursive;
+  background: transparent;
+  border: none;
 }

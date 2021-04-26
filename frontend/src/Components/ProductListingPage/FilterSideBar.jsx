@@ -22,13 +22,15 @@ export const FilterSideBar = () => {
             {
                 sortByNames.map((name,index) => {
                     return <div key = {index} className = "individual-filter-desktop">
+                            <label className = "pointer">
                             <input 
                             name = "sort_by" 
                             type = "radio" 
                             className = "filter-margin"
                             checked = {state.sort[name.toLowerCase()]} 
                             onChange = {() => (dispatch({type:"SORT", payload:name}))}/>
-                            <label htmlFor = {name}>{name}</label>
+                            {name}
+                            </label>
                             </div>
                             })
             }
@@ -36,6 +38,7 @@ export const FilterSideBar = () => {
             
             <div className = "filter-sidebar__heading">FILTERS</div>
                 <div>
+                    <label className = "pointer">
                     <input
                     type="checkbox"
                     name="in_stock_only"
@@ -43,7 +46,7 @@ export const FilterSideBar = () => {
                     checked = {state.otherFilter.in_stock}
                     onChange = {() => (dispatch({type : "OTHER_FILTER", payload:"in_stock"}))}
                     />
-                    <label htmlFor="in_stock_only">In Stock Only</label>
+                    In Stock Only</label>
                 </div>
                 <div className = "filter-border-bottom">
                 <label htmlFor="price">Price Range : 0 to {state.otherFilter.ranger_value}</label>
@@ -63,6 +66,7 @@ export const FilterSideBar = () => {
                 {
                     getBrands(state.products).map((item,index) => {
                         return <div key ={index}>
+                        <label className = "pointer">
                         <input
                         type="checkbox"
                         name={item}
@@ -70,7 +74,7 @@ export const FilterSideBar = () => {
                         checked = {state.brandFilter[item]}
                         onChange = {() => (dispatch({type:"FILTER_BY_BRAND",payload:item}))}
                         />
-                        <label htmlFor={item}>{item}</label>
+                        {item}</label>
                     </div>
                     })
                 }

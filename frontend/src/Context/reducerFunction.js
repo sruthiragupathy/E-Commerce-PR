@@ -3,7 +3,6 @@ import { brandNameArray } from "../Database";
 import { createObject } from "./ProductContext";
 
 export const reducerFunction = (state, { type, payload,value }) => {
-  console.log({payload});
     switch (type) {
       case "SET_PRODUCTS":
         return { ...state, products: payload };
@@ -34,7 +33,6 @@ export const reducerFunction = (state, { type, payload,value }) => {
           cart:removeItemFromExistingArray(state.cart,payload)
         }
       case "WISHLIST_ADD_OR_REMOVE":
-        console.log("payload",payload.isWishlisted);
         return {
           ...state,
           wishlist:payload.isWishlisted ? 
@@ -76,6 +74,8 @@ export const reducerFunction = (state, { type, payload,value }) => {
             "price : high to low":false
           }
         }
+      case "CLEAR_CART_AND_WISHLIST":
+        return {...state, cart: [], wishlist: [], address: [] }
 
       case "SET_OVERLAY":
         return {...state,overlay:!state.overlay}

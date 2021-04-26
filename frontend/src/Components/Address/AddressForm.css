@@ -2,12 +2,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 1px solid var(--lightgrey2);
-  padding: 0 1rem 3rem 1rem;
-}
-
-.form-container .btn {
-  width: 100%;
-  float: right;
+  padding: 0 1rem 1rem 1rem;
 }
 
 .address-card {
@@ -32,9 +27,13 @@
   text-align: left;
 }
 
-.btn-outline-secondary,
+.edit-btn,
 .remove-btn {
   padding: 0.25rem;
+  margin-right: 1rem;
+}
+
+.form-container .btn {
   margin-right: 1rem;
 }
 @media only screen and (min-width: 750px) {
