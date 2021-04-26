@@ -37,7 +37,7 @@ exports.getCartById = async (req,res,next,id) => {
 exports.getWishlistById = async (req,res,next,id) => {
     try{
     const wishlist = await Wishlist.findById(id);
-    console.log({wishlist});
+    // console.log({wishlist});
     if(!wishlist){
         throw Error("No such wishlist found");
     }

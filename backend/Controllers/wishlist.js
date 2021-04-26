@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 exports.getWishlistItems = async (req,res) => {
     let {wishlist} = req
-    console.log({wishlist});
+    // console.log({wishlist});
     try {
         wishlist = await wishlist.populate('wishlistItems.product').execPopulate()
         res.json({success:true, response: wishlist})
