@@ -28,10 +28,7 @@ function App() {
     error:false
   })
   const {auth} = useAuth();
-  // console.log({state});
   useEffect(() => {
-    // setStatus({...status,loading:true})
-    //fetching products
     (async function () {
       const {response,error} = await RestApiCalls("GET",`${BACKEND}/products`)
       if (!error) {
@@ -39,30 +36,11 @@ function App() {
       }
       setStatus({...status,loading:false});
     })();
-
-    // //fetching cart
-    // (async function () {
-    //   const { response, error } = await RestApiCalls("GET", "api/carts");
-    //   if (!error) {
-    //     dispatch({ type: "SET_CART", payload: response });
-    //     setStatus({...status,loading:false});
-
-    //   }
-    // })();
-
-    // //fetching wishlist
-    // (async function () {
-    //   const { response, error } = await RestApiCalls("GET", "api/wishlists");
-    //   if (!error) {
-    //     dispatch({ type: "SET_WISHLIST", payload: response });
-    //   }
-    // })();
   }, []);
 
   useEffect (() => {
-    // console.log({auth});
-    auth.user._id && (async function() {
-      // console.log("in auth")
+      auth.user._id && (async function() {
+
       const { response } = await RestApiCalls("GET",`${BACKEND}/${auth.user._id}/cart`) ;
       if(response.success) {
         dispatch ({type: "SET_CART", payload: response.response.cartItems })
@@ -80,12 +58,9 @@ function App() {
     })()
 
   },[auth.user._id])
-  if(state.overlay){
-    document.body.style.overflow="hidden"
-  }
-  else {
+  state.overlay?
+    document.body.style.overflow="hidden":
     document.body.style.overflow="scroll"
-  }
   return (
     <div className ="App">
       
@@ -94,7 +69,7 @@ function App() {
       setOpenHamburger={setOpenHamburger}
       />
       <div>
-      {status.loading ? 
+      {status.loading || auth.loading? 
       <div className = "loader">
         <CircularProgress color = "inherit"/>
       </div> : 
@@ -114,10 +89,6 @@ function App() {
       <Route path = "/login" element = {<Login/>} />
         <Route path = "/signup" element = {<SignUp/>} />
       </Routes>
-
-      {auth.loading && <div className = "loader">
-        <CircularProgress color = "inherit"/>
-      </div>}
     </div>
   );
 }

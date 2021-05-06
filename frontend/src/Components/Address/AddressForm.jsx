@@ -139,7 +139,7 @@ export const AddressForm = () => {
     }
     return (
     <div className = "address-container">
-    { (openForm || state.address.length===0) && <div className = "form-container">
+    { (openForm || state.address.length===0) && <form className = "form-container">
         <h5>ADDRESS</h5>
         <div className="input-group">
 	        <input 
@@ -225,7 +225,7 @@ export const AddressForm = () => {
         <button className = "btn btn-outline-secondary" onClick = {cancelHandler}>CANCEL</button>
 
         
-    </div>
+    </form>
     }
     {
         state.address.length !== 0 ? 

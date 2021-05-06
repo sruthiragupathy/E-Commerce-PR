@@ -1,14 +1,10 @@
 import { useProduct } from "../../Context/ProductContext"
+import { getBrands, sortByNames } from "../../utils/utils";
 import "./FilterSideBar.css";
 import { MobileSortAndFilter } from "./MobileSortAndFilter";
-const sortByNames = ["Latest","Discount","Price : High to Low","Price : Low to High"]
 
 export const FilterSideBar = () => {
     const {state,dispatch} = useProduct()
-    const getBrands = (products) => {
-        const allBrandNamesWithDuplicates = products.map(product => product.brandName)
-        return allBrandNamesWithDuplicates.filter((brandname,index) => (allBrandNamesWithDuplicates.indexOf(brandname) === index)).sort()
-    }
     return (
         <>
         <div className = "sidebar-wrapper">

@@ -61,7 +61,7 @@ const Navbar = ({ openHamburger, setOpenHamburger}) => {
       <ul className="nav__category rm-ul-padding flex">
         {category.map((item, index) => {
           return item === "amaara" ? 
-          <NavLink to = "/" end key = {index} className = "sidebar__item amaara">{item}</NavLink>:
+          <NavLink to = "/" end key = {index} className = "sidebar__item amaara-logo">{item}</NavLink>:
           <NavLink to = {`/products/${item}`} key = {index} className = "sidebar__item" activeClassName = "current-category">{item}</NavLink>
           
         })}

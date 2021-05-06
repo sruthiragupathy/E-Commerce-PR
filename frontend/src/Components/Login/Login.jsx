@@ -70,7 +70,7 @@ export const Login = () => {
         setLoading(false);
 
     }
-    return <div className = "auth-wrapper flex-center">
+    return <form className = "auth-wrapper flex-center">
         <div className = "login-container">
         <h1 className = "rm purple-txt login-title">Login</h1>
         <div className="input-group">
@@ -108,5 +108,5 @@ export const Login = () => {
             
         </div>
     </div>
-    </div>
+    </form>
 }
