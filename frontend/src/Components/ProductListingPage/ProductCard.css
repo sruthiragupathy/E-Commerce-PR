@@ -1,0 +1,44 @@
+.card {
+  width: 100%;
+  max-width: 100%;
+  justify-self: center;
+  position: relative;
+}
+
+.out-of-stock {
+  position: absolute;
+  width: 60%;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%);
+  text-align: center;
+  color: var(--orange);
+  font-weight: 1000;
+  background: #fff;
+  filter: grayscale(0);
+  opacity: 1;
+  /* font-size: 1rem; */
+}
+
+.primary {
+  min-height: 8rem;
+}
+
+.price {
+  font-size: 0.95rem;
+}
+
+.primary .price small {
+  display: inline;
+  padding-right: 0.45rem;
+}
+
+.brand-name {
+  width: 95%;
+}
+
+.overlay {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+  z-index: 1;
+}

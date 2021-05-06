@@ -1,0 +1,37 @@
+.empty-product {
+  width: 100%;
+  height: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.cart-wrapper {
+  margin: 0.4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 1rem;
+}
+
+.cart-heading {
+  margin: 2rem 0;
+}
+
+.background-overlay {
+  background: rgb(0, 0, 0, 0.65);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+}
+
+@media only screen and (min-width: 750px) {
+  .cart-wrapper {
+    grid-template-columns: 2.5fr 1.25fr;
+    margin: 0 2rem;
+  }
+}
