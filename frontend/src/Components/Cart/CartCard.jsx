@@ -7,17 +7,14 @@ import { useProduct } from "../../Context/ProductContext";
 import { calculateOriginalPrice, isInWishlist } from "../CardCommonFunctions";
 import { Modal } from "../Modal/Modal";
 import "./CartCard.css"
+import { hideToast } from "../../utils/hideToast";
 
 
 export const CartCard = ({_id, product, quantity, isInCart}) => {
     const {image,brandName,description,price,discountByPercentage,seller} = product;
     const {state,dispatch} = useProduct();
     const {auth} = useAuth();
-    const hideToast = () => {
-        setTimeout(() => {
-            dispatch({type:"TOGGLE_TOAST",payload:"", value: false});
-          }, 1000)
-    }
+
     const [qty, setQty ] = useState( quantity );
 
     const addToWishlist = async (e) => {
@@ -32,7 +29,7 @@ export const CartCard = ({_id, product, quantity, isInCart}) => {
         dispatch({type: "SET_WISHLIST", payload: response.wishlistItems});
         }
         dispatch({type:"TOGGLE_TOAST",payload:"1 item added to wishlist", value: true});
-        hideToast()
+        hideToast(dispatch)
 
 
     }

@@ -1,9 +1,9 @@
 
 import { useProduct } from "../../Context/ProductContext";
-
 import "./MobileSortAndFilter.css";
 import "./FilterSideBar.css"
-const sortByNames = ["Latest","Discount","Price : High to Low","Price : Low to High"]
+import { getBrands, sortByNames } from "../../utils/utils";
+
 export const MobileSortAndFilter = () => {
 
 
@@ -28,10 +28,6 @@ export const MobileSortAndFilter = () => {
 
     }
 
-    const getBrands = (products) => {
-        const allBrandNamesWithDuplicates = products.map(product => product.brandName)
-        return allBrandNamesWithDuplicates.filter((brandname,index) => (allBrandNamesWithDuplicates.indexOf(brandname) === index)).sort()
-    }
     return (
         <div className = "mobile-sort-and-filter-wrapper">
         <div className = "mobile-sort-and-filter__buttons">
