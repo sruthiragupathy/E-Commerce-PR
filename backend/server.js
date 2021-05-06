@@ -38,6 +38,7 @@ app.use(cors());
 
 
 //Routes
+// app.use("/", (req, res) => res.send("Hello"))
 app.use("/api", productRoutes);
 app.use("/api", userRoutes);
 app.use("/api", cartRoutes);
