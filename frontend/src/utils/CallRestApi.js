@@ -41,7 +41,7 @@ export const RestApiCalls = async (method, route, data) => {
         const res = await axios.put(route,data)
         return res.data;
       }
-      catch(error) {
+      catch(error) {  
         return { success: false, error: error.message};
       }
     }

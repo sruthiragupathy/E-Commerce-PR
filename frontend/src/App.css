@@ -1,48 +1,48 @@
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 .App {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+	width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--light-grey);
+	background: var(--light-grey);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--light-grey1);
+	background: var(--light-grey1);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--lightgrey2);
+	background: var(--lightgrey2);
 }
 
 .loader {
-  position: absolute;
-  width: 100vw;
-  height: 80vh;
-  top: 4rem;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--purple);
-  z-index: 10;
+	position: absolute;
+	width: 100vw;
+	height: 80vh;
+	top: 4rem;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--purple);
+	z-index: 10;
 }
 
 .amaara {
-  font-weight: 1000;
-  color: var(--purple);
-  font-family: "Pacifico", cursive;
-  background: transparent;
-  border: none;
+	font-weight: 100;
+	color: var(--purple);
+	font-family: 'Pacifico', cursive;
+	background: transparent;
+	border: none;
 }

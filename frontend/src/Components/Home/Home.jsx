@@ -1,11 +1,10 @@
 import {Link} from "react-router-dom";
 import { useProduct } from "../../Context/ProductContext";
 import { Toast } from "../Toast/Toast";
-
 import "./Home.css"
 
 export const Home = () => {
-    const {state} = useProduct()
+    const {state} = useProduct();
     return (
         <>
         <Link to = "/products/women">
