@@ -4,7 +4,8 @@ const Product = require('../Database/product');
 const Wishlist = require('../Database/wishlist');
 const Address = require('../Database/address');
 var jwt = require('jsonwebtoken');
-exports.isAuthorized = (req, res, next) => {
+
+const isAuthorized = (req, res, next) => {
 	const token = req.headers.authorization;
 	try {
 		const decoded = jwt.verify(token, 'secret');
@@ -17,7 +18,7 @@ exports.isAuthorized = (req, res, next) => {
 	}
 };
 
-exports.getUserById = async (req, res, next) => {
+const getUserById = async (req, res, next) => {
 	try {
 		const user = await User.findById(req.user.userId);
 		if (!user) {
@@ -30,7 +31,7 @@ exports.getUserById = async (req, res, next) => {
 	}
 };
 
-exports.getCartById = async (req, res, next) => {
+const getCartById = async (req, res, next) => {
 	try {
 		const cart = await Cart.findById(req.user.userId);
 		if (!cart) {
@@ -43,7 +44,7 @@ exports.getCartById = async (req, res, next) => {
 	}
 };
 
-exports.getWishlistById = async (req, res, next) => {
+const getWishlistById = async (req, res, next) => {
 	try {
 		const wishlist = await Wishlist.findById(req.user.userId);
 		if (!wishlist) {
@@ -56,7 +57,7 @@ exports.getWishlistById = async (req, res, next) => {
 	}
 };
 
-exports.getProductById = async (req, res, next, id) => {
+const getProductById = async (req, res, next, id) => {
 	try {
 		const product = await Product.findById(id);
 		if (!product) {
@@ -69,12 +70,21 @@ exports.getProductById = async (req, res, next, id) => {
 	}
 };
 
-exports.getAddressById = async (req, res, next, id) => {
+const getAddressById = async (req, res, next) => {
 	try {
-		const address = await Address.findById(id);
+		const address = await Address.findById(req.user.userId);
 		req.address = address;
 		next();
 	} catch (error) {
 		return res.status(400).json({ success: true, error: error.message });
 	}
+};
+
+module.exports = {
+	isAuthorized,
+	getUserById,
+	getCartById,
+	getAddressById,
+	getWishlistById,
+	getProductById,
 };

@@ -5,12 +5,7 @@ const {
 	deleteWishlistItems,
 } = require('../Controllers/wishlist');
 const router = express.Router();
-const {
-	getUserById,
-	getWishlistById,
-	getProductById,
-	isAuthorized,
-} = require('../Controllers/param');
+const { getWishlistById, isAuthorized } = require('../Controllers/param');
 
 router.get('/wishlist', isAuthorized, getWishlistById, getWishlistItems);
 router.post(
