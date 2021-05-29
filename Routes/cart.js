@@ -7,19 +7,21 @@ const {
 } = require('../Controllers/cart');
 const router = express.Router();
 const {
-	getUserById,
 	getCartById,
 	getProductById,
 	isAuthorized,
 } = require('../Controllers/param');
 
-router.param('userId', getUserById);
-router.param('userId', getCartById);
 router.param('productId', getProductById);
 
 router.get('/cart', isAuthorized, getCartById, getCartItems);
-router.post('/:userId/cart/:productId', addCartItems);
-router.put('/:userId/cart/:productId', updateQuantityOfCartItems);
-router.delete('/:userId/cart/:productId', deleteCartItems);
+router.post('/cart/:productId', isAuthorized, getCartById, addCartItems);
+router.put(
+	'/cart/:productId',
+	isAuthorized,
+	getCartById,
+	updateQuantityOfCartItems,
+);
+router.delete('/cart/:productId', isAuthorized, getCartById, deleteCartItems);
 
 module.exports = router;
