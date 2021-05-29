@@ -4,27 +4,6 @@ const User = require('../Database/user');
 const Wishlist = require('../Database/wishlist');
 var jwt = require('jsonwebtoken');
 
-//controllers
-exports.findUserById = async (req, res, next, id) => {
-	await User.findById(id).exec((err, user) => {
-		if (err) {
-			return res.status(404).json({
-				success: false,
-				message: 'User Not found',
-			});
-		}
-		req.user = user;
-	});
-};
-
-exports.getUsersFromDatabase = async (req, res) => {
-	try {
-		const users = await User.find({});
-		res.json({ users: users, success: true });
-	} catch (error) {
-		res.json({ succes: false, error });
-	}
-};
 exports.signupHandler = async (req, res) => {
 	const user = new User(req.body);
 	try {
@@ -71,6 +50,7 @@ exports.signupHandler = async (req, res) => {
 		res.json({ success: false, error: error.message });
 	}
 };
+
 exports.loginHandler = async (req, res) => {
 	const { email, password } = req.body;
 	try {

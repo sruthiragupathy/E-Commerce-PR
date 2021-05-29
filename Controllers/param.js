@@ -18,19 +18,6 @@ const isAuthorized = (req, res, next) => {
 	}
 };
 
-const getUserById = async (req, res, next) => {
-	try {
-		const user = await User.findById(req.user.userId);
-		if (!user) {
-			throw Error('No such user found');
-		}
-		req.user = user;
-		next();
-	} catch (error) {
-		return res.status(400).json({ success: true, error: error.message });
-	}
-};
-
 const getCartById = async (req, res, next) => {
 	try {
 		const cart = await Cart.findById(req.user.userId);
@@ -82,7 +69,6 @@ const getAddressById = async (req, res, next) => {
 
 module.exports = {
 	isAuthorized,
-	getUserById,
 	getCartById,
 	getAddressById,
 	getWishlistById,

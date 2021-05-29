@@ -6,11 +6,7 @@ const {
 	deleteAddress,
 } = require('../Controllers/address');
 const router = express.Router();
-const {
-	getUserById,
-	getAddressById,
-	isAuthorized,
-} = require('../Controllers/param');
+const { getAddressById, isAuthorized } = require('../Controllers/param');
 
 router.get('/address', isAuthorized, getAddressById, getAddress);
 router.post('/address', isAuthorized, getAddressById, addAddress);
