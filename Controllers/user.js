@@ -28,6 +28,7 @@ exports.getUsersFromDatabase = async (req, res) => {
 exports.signupHandler = async (req, res) => {
 	const user = new User(req.body);
 	try {
+		const token = jwt.sign({ userId: user._id }, 'secret');
 		const savedUser = await user.save();
 		const userCart = new Cart({
 			_id: savedUser._id,
@@ -60,7 +61,7 @@ exports.signupHandler = async (req, res) => {
 			});
 
 		res.json({
-			success: true,
+			token,
 			user: savedUser,
 			userCart: userCart,
 			userWishlist: userWishlist,
