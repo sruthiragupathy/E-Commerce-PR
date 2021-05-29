@@ -9,14 +9,21 @@ const {
 	getUserById,
 	getWishlistById,
 	getProductById,
+	isAuthorized,
 } = require('../Controllers/param');
 
-router.param('userId', getUserById);
-router.param('userId', getWishlistById);
-router.param('productId', getProductById);
-
-router.get('/:userId/wishlist', getWishlistItems);
-router.post('/:userId/wishlist/:productId', addWishlistItems);
-router.delete('/:userId/wishlist/:productId', deleteWishlistItems);
+router.get('/wishlist', isAuthorized, getWishlistById, getWishlistItems);
+router.post(
+	'/wishlist/:productId',
+	isAuthorized,
+	getWishlistById,
+	addWishlistItems,
+);
+router.delete(
+	'/wishlist/:productId',
+	isAuthorized,
+	getWishlistById,
+	deleteWishlistItems,
+);
 
 module.exports = router;

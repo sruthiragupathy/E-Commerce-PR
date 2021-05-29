@@ -2,47 +2,46 @@ const Wishlist = require('../Database/wishlist');
 const _ = require('lodash');
 
 exports.getWishlistItems = async (req, res) => {
-	let { wishlist } = req;
-	console.log({ wishlist });
+	const { wishlist } = req;
 	try {
-		wishlist = await wishlist.populate('wishlistItems.product').execPopulate();
-		res.json({ success: true, response: wishlist });
+		await wishlist.populate('wishlistItems.product').execPopulate();
+		res.json({ response: wishlist });
 	} catch (error) {
-		res.json({ success: false, response: error.message });
+		res.status(401).json({ response: error.message });
 	}
 };
 
 exports.addWishlistItems = async (req, res) => {
-	const { product } = req;
-	let { wishlist } = req;
+	const { productId } = req.params;
+	const { wishlist } = req;
 	try {
-		if (!wishlist.wishlistItems.id(product._id)) {
-			wishlist = _.extend(wishlist, {
+		if (!wishlist.wishlistItems.id(productId)) {
+			const addProductToWishlist = _.extend(wishlist, {
 				wishlistItems: _.concat(wishlist.wishlistItems, {
-					_id: product._id,
-					product: product._id,
+					_id: productId,
+					product: productId,
 				}),
 			});
-			wishlist = await wishlist.save();
-			wishlist = await wishlist
+			await addProductToWishlist.save();
+			await addProductToWishlist
 				.populate('wishlistItems.product')
 				.execPopulate();
-			res.json({ success: true, response: wishlist });
+			res.json({ response: wishlist });
 		}
 	} catch (error) {
-		res.json({ success: false, response: error.message });
+		res.status(401).json({ response: error.message });
 	}
 };
 
 exports.deleteWishlistItems = async (req, res) => {
-	const { product } = req;
-	let { wishlist } = req;
+	const { productId } = req.params;
+	const { wishlist } = req;
 	try {
-		await wishlist.wishlistItems.id(product._id).remove();
+		await wishlist.wishlistItems.id(productId).remove();
 		await wishlist.save();
-		wishlist = await wishlist.populate('wishlistItems.product').execPopulate();
-		res.json({ success: true, response: wishlist });
+		await wishlist.populate('wishlistItems.product').execPopulate();
+		res.json({ response: wishlist });
 	} catch (error) {
-		res.json({ success: false, response: error.message });
+		res.status(401).json({ response: error.message });
 	}
 };
