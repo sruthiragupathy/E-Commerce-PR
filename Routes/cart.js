@@ -5,12 +5,13 @@ const {
 	deleteCartItems,
 	updateQuantityOfCartItems,
 } = require('../Controllers/cart');
-const router = express.Router();
+
 const {
 	getCartById,
 	getProductById,
 	isAuthorized,
 } = require('../Controllers/param');
+const router = express.Router();
 
 router.param('productId', getProductById);
 

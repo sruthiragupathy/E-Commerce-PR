@@ -1,5 +1,4 @@
 const Cart = require('../Database/cart');
-const User = require('../Database/user');
 const Product = require('../Database/product');
 const Wishlist = require('../Database/wishlist');
 const Address = require('../Database/address');

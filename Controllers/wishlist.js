@@ -1,4 +1,3 @@
-const Wishlist = require('../Database/wishlist');
 const _ = require('lodash');
 
 exports.getWishlistItems = async (req, res) => {

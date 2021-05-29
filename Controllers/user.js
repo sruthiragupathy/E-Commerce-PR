@@ -1,7 +1,5 @@
-const Address = require('../Database/address');
-const Cart = require('../Database/cart');
 const User = require('../Database/user');
-const Wishlist = require('../Database/wishlist');
+
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -12,7 +10,7 @@ exports.signupUser = async (req, res) => {
 		if (user) {
 			return res.json({ message: 'User Already exists' });
 		}
-		//encrypt password and save
+		//encrypt password and save new user
 		const newUser = new User(req.body);
 		const salt = await bcrypt.genSalt(10);
 		newUser.password = await bcrypt.hash(newUser.password, salt);

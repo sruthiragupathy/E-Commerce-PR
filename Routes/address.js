@@ -5,8 +5,8 @@ const {
 	updateAddress,
 	deleteAddress,
 } = require('../Controllers/address');
-const router = express.Router();
 const { getAddressById, isAuthorized } = require('../Controllers/param');
+const router = express.Router();
 
 router.get('/address', isAuthorized, getAddressById, getAddress);
 router.post('/address', isAuthorized, getAddressById, addAddress);
