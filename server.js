@@ -11,24 +11,10 @@ const wishlistRoutes = require('./Routes/wishlist');
 const addressRoutes = require('./Routes/address');
 
 const connectMongoDb = require('./Database/connectMongoDb');
-const address = require('./Database/address');
-// const femaleProducts = require("./Database/database");
-// const Product = require("./Database/Product");
 
 const PORT = process.env.PORT || 3000;
 
-const bool = true;
-
 connectMongoDb();
-// console.log(femaleProducts);
-// const populateData = async ( femaleProducts ) => {
-//     try {
-//     await Product.insertMany(femaleProducts);
-//     }
-//     catch (error) {
-//         console.log(error)
-//     }
-// }
 
 //Middlewares
 app.use(bodyParser.json()); // handle json data
@@ -36,7 +22,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 //Routes
-// app.use("/", (req, res) => res.send("Hello"))
 app.use('/api', productRoutes);
 app.use('/api', userRoutes);
 app.use('/api', cartRoutes);
