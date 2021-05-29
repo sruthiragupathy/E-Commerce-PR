@@ -25,12 +25,12 @@ const getCartById = async (req, res, next) => {
 				_id: req.userId,
 			});
 			await userCart.save();
-			return res.json({ response: userCart });
+			return res.json({ response: userCart.cartItems });
 		}
 		req.cart = cart;
 		next();
 	} catch (error) {
-		return res.status(400).json({ success: true, error: error.message });
+		return res.status(400).json({ error: error.message });
 	}
 };
 
@@ -42,12 +42,12 @@ const getWishlistById = async (req, res, next) => {
 				_id: req.userId,
 			});
 			await userWishlist.save();
-			return res.json({ response: userWishlist });
+			return res.json({ response: userWishlist.wishlistItems });
 		}
 		req.wishlist = wishlist;
 		next();
 	} catch (error) {
-		return res.status(400).json({ success: true, error: error.message });
+		return res.status(400).json({ error: error.message });
 	}
 };
 
@@ -60,7 +60,7 @@ const getProductById = async (req, res, next, id) => {
 		req.product = product;
 		next();
 	} catch (error) {
-		return res.status(400).json({ success: true, error: error.message });
+		return res.status(400).json({ error: error.message });
 	}
 };
 
@@ -72,12 +72,12 @@ const getAddressById = async (req, res, next) => {
 				_id: req.userId,
 			});
 			await userAddress.save();
-			return res.json({ response: userAddress });
+			return res.json({ response: userAddress.addresses });
 		}
 		req.address = address;
 		next();
 	} catch (error) {
-		return res.status(400).json({ success: true, error: error.message });
+		return res.status(400).json({ error: error.message });
 	}
 };
 

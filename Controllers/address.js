@@ -3,7 +3,7 @@ const { concat } = require('lodash');
 exports.getAddress = async (req, res) => {
 	const { address } = req;
 	try {
-		res.json({ response: address });
+		res.json({ response: address.addresses });
 	} catch {
 		res.status(401).json({ response: error.message });
 	}
@@ -17,7 +17,7 @@ exports.addAddress = async (req, res) => {
 			addresses: concat(address.addresses, addAddress),
 		});
 		await updatedAddress.save();
-		res.json({ response: updatedAddress });
+		res.json({ response: updatedAddress.addresses });
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}
@@ -33,6 +33,7 @@ exports.updateAddress = async (req, res) => {
 		updateAddress = extend(updateAddress, addressFromBody);
 		address.addresses = extend(address.addresses, updateAddress);
 		await address.save();
+		address._id = undefined;
 		res.json({ response: address });
 	} catch (error) {
 		res.status(401).json({ response: error.message });
@@ -45,7 +46,7 @@ exports.deleteAddress = async (req, res) => {
 	try {
 		await address.addresses.id(addressId).remove();
 		await address.save();
-		res.json({ response: address });
+		res.json({ response: address.addresses });
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}

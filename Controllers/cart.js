@@ -4,7 +4,7 @@ exports.getCartItems = async (req, res) => {
 	const { cart } = req;
 	try {
 		await cart.populate('cartItems.product').execPopulate();
-		res.json({ response: cart });
+		res.json({ response: cart.cartItems });
 	} catch (error) {
 		res.status(400).json({ response: error.message });
 	}
@@ -25,7 +25,7 @@ exports.addCartItems = async (req, res) => {
 			});
 			await updateCart.save();
 			await updateCart.populate('cartItems.product').execPopulate();
-			res.json({ response: cart });
+			res.json({ response: cart.cartItems });
 		} else {
 			res.json({ response: 'already exists in cart' });
 		}
@@ -46,7 +46,7 @@ exports.updateQuantityOfCartItems = async (req, res) => {
 	try {
 		await cart.save();
 		await cart.populate('cartItems.product').execPopulate();
-		res.json({ response: cart });
+		res.json({ response: cart.cart });
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}
@@ -59,8 +59,8 @@ exports.deleteCartItems = async (req, res) => {
 		await cart.cartItems.id(productId).remove();
 		await cart.save();
 		await cart.populate('cartItems.product').execPopulate();
-		res.json({ response: cart });
+		res.json({ response: cart.cartItems });
 	} catch (error) {
-		res.status(401).json({ message: error.message });
+		res.status(401).json({ response: error.message });
 	}
 };

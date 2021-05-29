@@ -16,7 +16,7 @@ exports.signupUser = async (req, res) => {
 		newUser.password = await bcrypt.hash(newUser.password, salt);
 		await newUser.save();
 		//generate token
-		const token = jwt.sign({ userId: newUser._id }, 'secret', {
+		const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
 			expiresIn: '24h',
 		});
 
@@ -46,7 +46,7 @@ exports.loginUser = async (req, res) => {
 			throw new Error('Email and password does not match');
 		}
 		//generate token
-		const token = jwt.sign({ userId: user._id }, 'secret', {
+		const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
 			expiresIn: '24h',
 		});
 

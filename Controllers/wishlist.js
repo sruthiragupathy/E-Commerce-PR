@@ -4,7 +4,7 @@ exports.getWishlistItems = async (req, res) => {
 	const { wishlist } = req;
 	try {
 		await wishlist.populate('wishlistItems.product').execPopulate();
-		res.json({ response: wishlist });
+		res.json({ response: wishlist.wishlistItems });
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}
@@ -25,7 +25,7 @@ exports.addWishlistItems = async (req, res) => {
 			await addProductToWishlist
 				.populate('wishlistItems.product')
 				.execPopulate();
-			res.json({ response: wishlist });
+			res.json({ response: wishlist.wishlistItems });
 		}
 	} catch (error) {
 		res.status(401).json({ response: error.message });
@@ -39,7 +39,7 @@ exports.deleteWishlistItems = async (req, res) => {
 		await wishlist.wishlistItems.id(productId).remove();
 		await wishlist.save();
 		await wishlist.populate('wishlistItems.product').execPopulate();
-		res.json({ response: wishlist });
+		res.json({ response: wishlist.wishlistItems });
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}
