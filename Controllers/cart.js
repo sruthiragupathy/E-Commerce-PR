@@ -1,6 +1,6 @@
 const { extend, concat } = require('lodash');
 
-exports.getCartItems = async (req, res) => {
+const getCartItems = async (req, res) => {
 	const { cart } = req;
 	try {
 		await cart.populate('cartItems.product').execPopulate();
@@ -10,7 +10,7 @@ exports.getCartItems = async (req, res) => {
 	}
 };
 
-exports.addCartItems = async (req, res) => {
+const addCartItems = async (req, res) => {
 	const { product } = req;
 	const { cart } = req;
 	try {
@@ -34,7 +34,7 @@ exports.addCartItems = async (req, res) => {
 	}
 };
 
-exports.updateQuantityOfCartItems = async (req, res) => {
+const updateQuantityOfCartItems = async (req, res) => {
 	const { cart } = req;
 	const { productId } = req.params;
 	const { quantity } = req.body;
@@ -46,13 +46,13 @@ exports.updateQuantityOfCartItems = async (req, res) => {
 	try {
 		await cart.save();
 		await cart.populate('cartItems.product').execPopulate();
-		res.json({ response: cart.cart });
+		res.json({ response: cart.cartItems });
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}
 };
 
-exports.deleteCartItems = async (req, res) => {
+const deleteCartItems = async (req, res) => {
 	const { productId } = req.params;
 	const { cart } = req;
 	try {
@@ -63,4 +63,11 @@ exports.deleteCartItems = async (req, res) => {
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}
+};
+
+module.exports = {
+	getCartItems,
+	addCartItems,
+	updateQuantityOfCartItems,
+	deleteCartItems,
 };

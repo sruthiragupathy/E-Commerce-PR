@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-exports.getWishlistItems = async (req, res) => {
+const getWishlistItems = async (req, res) => {
 	const { wishlist } = req;
 	try {
 		await wishlist.populate('wishlistItems.product').execPopulate();
@@ -10,7 +10,7 @@ exports.getWishlistItems = async (req, res) => {
 	}
 };
 
-exports.addWishlistItems = async (req, res) => {
+const addWishlistItems = async (req, res) => {
 	const { productId } = req.params;
 	const { wishlist } = req;
 	try {
@@ -32,7 +32,7 @@ exports.addWishlistItems = async (req, res) => {
 	}
 };
 
-exports.deleteWishlistItems = async (req, res) => {
+const deleteWishlistItems = async (req, res) => {
 	const { productId } = req.params;
 	const { wishlist } = req;
 	try {
@@ -43,4 +43,10 @@ exports.deleteWishlistItems = async (req, res) => {
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}
+};
+
+module.exports = {
+	getWishlistItems,
+	addWishlistItems,
+	deleteWishlistItems,
 };

@@ -1,6 +1,6 @@
 const { extend } = require('lodash');
 const { concat } = require('lodash');
-exports.getAddress = async (req, res) => {
+const getAddress = async (req, res) => {
 	const { address } = req;
 	try {
 		res.json({ response: address.addresses });
@@ -9,7 +9,7 @@ exports.getAddress = async (req, res) => {
 	}
 };
 
-exports.addAddress = async (req, res) => {
+const addAddress = async (req, res) => {
 	const { address } = req;
 	const addAddress = req.body;
 	try {
@@ -23,7 +23,7 @@ exports.addAddress = async (req, res) => {
 	}
 };
 
-exports.updateAddress = async (req, res) => {
+const updateAddress = async (req, res) => {
 	const { address } = req;
 	const { addressId } = req.params;
 	const addressFromBody = req.body;
@@ -40,7 +40,7 @@ exports.updateAddress = async (req, res) => {
 	}
 };
 
-exports.deleteAddress = async (req, res) => {
+const deleteAddress = async (req, res) => {
 	const { address } = req;
 	const { addressId } = req.params;
 	try {
@@ -50,4 +50,11 @@ exports.deleteAddress = async (req, res) => {
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}
+};
+
+module.exports = {
+	getAddress,
+	addAddress,
+	updateAddress,
+	deleteAddress,
 };

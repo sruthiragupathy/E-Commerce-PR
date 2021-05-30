@@ -3,7 +3,7 @@ const User = require('../Database/user');
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-exports.signupUser = async (req, res) => {
+const signupUser = async (req, res) => {
 	try {
 		//check if user exists
 		const user = await User.findOne({ email: req.body.email });
@@ -31,7 +31,7 @@ exports.signupUser = async (req, res) => {
 	}
 };
 
-exports.loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
 	const { email, password } = req.body;
 	try {
 		const user = await User.findOne({ email });
@@ -57,4 +57,9 @@ exports.loginUser = async (req, res) => {
 	} catch (error) {
 		res.status(401).json({ error: error.message });
 	}
+};
+
+module.exports = {
+	signupUser,
+	loginUser,
 };

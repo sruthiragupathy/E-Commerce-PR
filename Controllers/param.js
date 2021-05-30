@@ -51,17 +51,16 @@ const getWishlistById = async (req, res, next) => {
 	}
 };
 
-const getProductById = async (req, res, next, id) => {
-	try {
-		const product = await Product.findById(id);
-		if (!product) {
-			throw Error('No such product found');
+const findProductById = (req, res, next, id) => {
+	Product.findById(id).exec((err, product) => {
+		if (err) {
+			res.status(400).json({
+				message: 'product not found',
+			});
 		}
 		req.product = product;
 		next();
-	} catch (error) {
-		return res.status(400).json({ error: error.message });
-	}
+	});
 };
 
 const getAddressById = async (req, res, next) => {
@@ -86,5 +85,5 @@ module.exports = {
 	getCartById,
 	getAddressById,
 	getWishlistById,
-	getProductById,
+	findProductById,
 };
