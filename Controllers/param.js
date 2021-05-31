@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 const isAuthorized = (req, res, next) => {
 	const token = req.headers.authorization;
 	try {
-		const decoded = jwt.verify(token, 'secret');
+		const decoded = jwt.verify(token, process.env.SECRET_KEY);
 		req.userId = decoded.userId;
 		next();
 	} catch (error) {
@@ -51,8 +51,8 @@ const getWishlistById = async (req, res, next) => {
 	}
 };
 
-const findProductById = (req, res, next, id) => {
-	Product.findById(id).exec((err, product) => {
+const findProductById = async (req, res, next, id) => {
+	await Product.findById(id).exec((err, product) => {
 		if (err) {
 			res.status(400).json({
 				message: 'product not found',

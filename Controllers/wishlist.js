@@ -25,8 +25,8 @@ const addWishlistItems = async (req, res) => {
 			await addProductToWishlist
 				.populate('wishlistItems.product')
 				.execPopulate();
-			res.json({ response: wishlist.wishlistItems });
-		}
+			res.json({ response: addProductToWishlist.wishlistItems });
+		} else throw Error('item already exists in wishlist');
 	} catch (error) {
 		res.status(401).json({ response: error.message });
 	}

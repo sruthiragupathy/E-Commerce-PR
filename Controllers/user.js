@@ -21,12 +21,11 @@ const signupUser = async (req, res) => {
 		});
 
 		res.json({
-			response: {
-				token,
-				user: newUser.firstName,
-			},
+			token,
+			username: newUser.firstName,
 		});
 	} catch (error) {
+		console.error(error);
 		res.status(401).json({ error: error.message });
 	}
 };
@@ -51,11 +50,11 @@ const loginUser = async (req, res) => {
 		});
 
 		res.json({
-			message: 'Authentication successful',
-			response: { token: token, user: user.firstName },
+			token,
+			username: user.firstName,
 		});
 	} catch (error) {
-		res.status(401).json({ error: error.message });
+		return res.status(401).json({ error: error.message });
 	}
 };
 

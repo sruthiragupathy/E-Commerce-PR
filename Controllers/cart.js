@@ -38,17 +38,15 @@ const updateQuantityOfCartItems = async (req, res) => {
 	const { cart } = req;
 	const { productId } = req.params;
 	const { quantity } = req.body;
-	const productToUpdate = cart.cartItems.id(productId);
-	const updateProductQuantity = extend(productToUpdate, {
-		quantity: quantity,
-	});
-	cart.cartItems = extend(cart.cartItems, { updateProductQuantity });
+	let updateCartItem = cart.cartItems.id(productId);
+	updateCartItem = extend(updateCartItem, { quantity: quantity });
+	cart.cartItems = extend(cart.cartItems, { updateCartItem });
 	try {
 		await cart.save();
 		await cart.populate('cartItems.product').execPopulate();
 		res.json({ response: cart.cartItems });
 	} catch (error) {
-		res.status(401).json({ response: error.message });
+		res.json({ success: false, response: error.message });
 	}
 };
 
