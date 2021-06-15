@@ -1,3 +1,3 @@
-export const isInCurrentPage = (location,currentItem) => {
-    return location === currentItem;
-}
+export const isInCurrentPage = (location, currentItem) => {
+	return location === currentItem;
+};
