@@ -4,6 +4,7 @@
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
+	scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
@@ -39,8 +40,8 @@
 	z-index: 10;
 }
 
-.amaara-logo {
-	font-weight: 100;
+.amaara {
+	font-weight: 1000;
 	color: var(--purple);
 	font-family: 'Pacifico', cursive;
 	background: transparent;

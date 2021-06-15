@@ -1,42 +1,43 @@
 .empty-product {
-  width: 100%;
-  height: 10vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  position: fixed;
+	width: 100%;
+	height: 10vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	position: fixed;
 }
 
 .wishlist-wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 }
 
 .wishlist-heading {
-  margin: 0 0 1.5rem 0;
-  text-align: center;
+	margin: 0 0 1.5rem 0;
+	text-align: center;
 }
 
 @media only screen and (min-width: 750px) {
-  .wishlist-wrapper {
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 3rem;
-    grid-row-gap: 2rem;
-    margin: 1rem 0;
-  }
+	.wishlist-wrapper {
+		grid-template-columns: repeat(3, 1fr);
+		grid-column-gap: 3rem;
+		grid-row-gap: 2rem;
+		margin: 1rem 0;
+	}
 
-  .wishlist-container {
-    margin: 1rem 1.5rem 1.5rem;
-  }
+	.wishlist-container {
+		margin: 1rem 1.5rem 1.5rem;
+	}
 
-  .wishlist-heading {
-    text-align: left;
-  }
+	.wishlist-heading {
+		text-align: left;
+	}
 }
 
 @media only screen and (min-width: 1200px) {
-  .wishlist-wrapper {
-    grid-template-columns: repeat(4, 1fr);
-  }
+	.wishlist-wrapper {
+		grid-template-columns: repeat(4, 1fr);
+		grid-gap: 2rem 7.25rem;
+	}
 }
